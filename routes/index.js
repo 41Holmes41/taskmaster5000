@@ -16,9 +16,21 @@ router.get('/', indexCtlr.index);
  router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect : '/students',
-    failureRedirect : '/students'
+    successRedirect : '/loggedin',
+    failureRedirect : '/'
   }
 ));
+
+router.get('/loggedin', indexCtlr.loggedIn)
+
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+router.get('/dashboard/:id', indexCtlr.showDashboard)
+
+
 
 module.exports = router;
