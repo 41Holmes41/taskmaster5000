@@ -20,7 +20,7 @@ var groupSchema = new mongoose.Schema({
         ref: 'Task'
     }],
 
-    recentlyCompletedTasks: [{
+    completedTasks: [{
         type: Schema.Types.ObjectId,
         ref: 'Task'
     }],

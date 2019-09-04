@@ -1,0 +1,28 @@
+<% include ../partials/nogroupheader.ejs %>
+<div class="container">
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Are you sure you want to delete <%= group.name %>?</span>
+
+
+          <div class="row">
+              <form class="col s12" action="/groups/delete/<%= group.id %>" method="DELETE" autocomplete="off">
+
+                <input type="submit" class="waves-effect waves-light btn"></input>
+
+                </form>
+            </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% include ../partials/nogroupfooter.ejs %>
+<!--   <form action="/groups/delete/<%= group.id %>" method="DELETE" autocomplete="off">
+    <input class="white-text teal lighten-1"type="submit" value="Delete">
+  </form> -->

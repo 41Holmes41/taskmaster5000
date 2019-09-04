@@ -7,19 +7,37 @@
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title center">Add a New Task</span>
-              <form action="/tasks/new/<%=group._id%>" method="POST" autocomplete="off">
-                <h6 class="">Name::</h6>
-                <input type="text" name="title">
-                <h6 class="">Description:</h6>
-                <input type="text" name="description">
-                <h6 class="">Completion Date:</h6>
-                <input class="" type="datetime-local" name="completion" value="2019-01-01T12:00">
-                <input class=""type="submit" value="Add Your Task">
-              </form>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
+
+
+
+
+
+              <div class="row">
+                  <form class="col s12" action="/tasks/new" method="POST" autocomplete="off">
+
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="last_name" type="text" class="validate" name="title">
+                        <label for="last_name">Name</label>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="last_name" type="text" class="validate" name="description">
+                        <label for="last_name">Description</label>
+                      </div>
+                    </div>
+
+                    
+                    <input class="" type="datetime-local" name="completion" >
+                    
+
+                    <input type="submit" class="waves-effect waves-light btn"></input>
+
+                    </form>
+                </div>
+
             </div>
           </div>
         </div>

@@ -1,8 +1,46 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+
+.profile-pic {
+  height: 30px;
+  width: 30px;
+  margin-top: 30%;
+  margin-bottom: 50%;
+  margin-right:15px;
+ 
+/*   display: inline-block;
+  position: flex; */
+}
+
+.icon {
+  /* display: inline-block;
+  position: flex; */
+}
+
+.list {
+ /*  position: relative; */
+}
+
+.profile-link {
+  padding: 0px;
+  padding-left: 5px;
+}
+
+.card-pic{
+  height: 50px;
+  width: 50px;
+}
+
+ul li a{
+  margin:0;
+  padding:0;
+  margin-right: 15px;
+  padding-right: 10px;
 }

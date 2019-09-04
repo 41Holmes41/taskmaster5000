@@ -17,7 +17,12 @@ var userSchema = new mongoose.Schema({
         ref: 'Group'
     }],
 
-    points: {
+    currentPoints: {
+        type: Number,
+        default: 1
+    },
+
+    totalPoints: {
         type: Number,
         default: 1
     },

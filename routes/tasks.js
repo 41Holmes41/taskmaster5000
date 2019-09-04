@@ -3,8 +3,11 @@ var router = express.Router();
 //var passport = require('passport');
 var tasksCtlr = require('../controllers/tasks');
 
-router.get('/new/:id', isLoggedIn, tasksCtlr.new);
-router.post('/new/:id', isLoggedIn, tasksCtlr.create);
+router.get('/new', isLoggedIn, tasksCtlr.new);
+router.post('/new', isLoggedIn, tasksCtlr.create);
+router.get('/show/:id',isLoggedIn, tasksCtlr.show);
+router.get('/delete/:id', isLoggedIn, tasksCtlr.remove);
+
 
 
 function isLoggedIn(req, res, next) {

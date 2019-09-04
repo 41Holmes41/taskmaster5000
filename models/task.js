@@ -13,11 +13,13 @@ var taskSchema = new mongoose.Schema({
         default: true
     },
     completion: Date,
+    posted : Date,
+    postDuration : String,
     completed: {
         type: Boolean,
         default: false
     },
-    completionTime: Date,
+    timeuntilcompletion: String,
     completedBy: String,
     completedByAvatar: String,
     description: String,
