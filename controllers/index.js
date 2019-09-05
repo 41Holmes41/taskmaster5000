@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Group = require('../models/group');
 const Task = require('../models/task');
+const Message = require('../models/message');
 const Time = require('../time')
 var moment = require('moment');
 
@@ -42,13 +43,25 @@ function showDashboard(req, res, next) {
       req.user.activeGroup = group;
       req.user.populate('activeGroup').execPopulate(function (err, userPopulated) {
         req.user.save(function (err) {
-          res.render('dashboard', {
-            name: req.query.name,
-            group,
-            userPopulated
+          
+          group.populate({
+            path: 'messages',
+            populate: { path: 'poster', option: { sort : { 'createdAt': -1}}}
+          }).execPopulate(function (err, group){
+
+            res.render('dashboard', {
+              name: req.query.name,
+              group,
+              userPopulated,
+              
+            });
+
           });
+
+
+          })
+
         });
       });
     });
-  })
-};
+  }

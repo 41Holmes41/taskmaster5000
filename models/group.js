@@ -1,10 +1,21 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+
+
+
+
+
 var groupSchema = new mongoose.Schema({
     name: String,
     password: String,
     description: String,
+    messages: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Message'
+    }],
+    
     creator: {
         type: Schema.Types.ObjectId,
         ref: 'User'

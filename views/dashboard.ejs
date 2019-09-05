@@ -1,6 +1,63 @@
 <% include ./partials/header.ejs %>
 
 <div class="container">
+
+
+<div class="row">
+    <div class="col s12 m12">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title center"><%=group.name%>'s Message Board</span>
+          <div class="card-action">
+              
+                  <a href="/messages/new">New Post</a>
+                
+            </div>
+            
+          
+            <% if (group.messages[0]) { %>
+
+            <p> <% group.messages.forEach( function(message) {  %></p>
+              
+            <div class="row">
+                <div class="col s12 m12">
+                  <div class="card blue darken-1">
+                    <div class="card-content white-text">
+                      <span class="card-title"><%=message.title%></span>
+                      <p> By <%=message.poster.name%></p>
+                      <p>Posted on <%=message.postTime%></p>
+                    </div>
+                    <div class="card-action">
+                      <a href="/messages/show/<%=message._id%>">View</a>
+                      <% if (message.posterId === userPopulated._id.toString()) { %>
+                        <a href="#">Delete</a>
+                        <% } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <% }) %>
+
+
+            <% } else { %>
+            <p>There are no messages in this group!</p>
+            <% } %>
+
+          
+        </div>
+        <div class="card-action">
+            <a href="/messages/new">New Post</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  
   <div class="row">
     <div class="col s12 m12">
       <div class="card blue-grey darken-1">
@@ -16,7 +73,7 @@
             <p> <% group.availableTasks.forEach( function(task) {  %></p>
               
             <div class="row">
-                <div class="col s12 m6">
+                <div class="col s12 m12">
                   <div class="card blue darken-1">
                     <div class="card-content white-text">
                       <span class="card-title"><%=task.title%></span>
