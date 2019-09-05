@@ -14,27 +14,32 @@ module.exports = {
 
 function show(req, res, next) {
   Group.findById(req.user.activeGroup, function(err, group){
+   
     Message.findById(req.params.id, function (err, message){
       message.populate('poster').execPopulate(function(err, message){
-
-    userPopulated= req.user;
+        
+        req.user.populate('activeGroup').execPopulate(function (err, userPopulated){
+       
     res.render('messages/show', {
       name: req.query.name,
       userPopulated,
       group,
       message
     });
+  });
   })
   });
   })
 }
 
 function newMessage(req, res, next) {
-  userPopulated= req.user;
+  
+  req.user.populate('activeGroup').execPopulate(function (err, userPopulated){
   res.render('messages/new', {
     name: req.query.name,
     userPopulated
   });
+});
 }
 
 
@@ -48,10 +53,11 @@ function createReply(req, res, next) {
       postTime: new moment().format('MMMM Do YYYY, h:mm:ss a')
     })
     message.save();
-
-    res.redirect(`../show/${req.params.id}`)
+    
+      res.redirect(`../show/${req.params.id}`)
+  });
   })
-  })
+  
 }
 
 
@@ -67,8 +73,10 @@ function createMessage(req, res, next) {
 
         group.messages.push(message);
         group.save( function (err) {
-
+          
+          
           res.redirect(`../dashboard/${req.user.activeGroup}`)
+        
         })
       });
     })
