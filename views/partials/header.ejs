@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -13,11 +13,11 @@
 </head>
 
 <body>
-  <div>
+  <div class="navbar-fixed navbar-fixed1">
     <nav>
       <div class="nav-wrapper">
         <ul id="nav-mobile" class=" ">
-          <li><a href="/" class="brand-logo right">TaskMaster5000</a></li>
+          <li><a href="/loggedin" class="brand-logo right">TaskMaster5000</a></li>
          
             <% if (userPopulated) { %>
               <li><a href="/users/myinfo/<%=userPopulated.id%>" class="right profile-link"><img class=" z-depth-3 profile responsive-img profile-pic circle" src="<%= userPopulated.avatar %>" alt=""></a></li>
@@ -28,14 +28,15 @@
             </ul>
       </div>
     </nav>
-
-
+  </div>
+    <div class="navbar-fixed navbar-fixed2">
     <nav>
       <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left ">
+        <li><a href="/dashboard/<%=userPopulated.activeGroup.id%>" class="dashboard-link "> <%= userPopulated.activeGroup.name %> Dashboard</a></li>
+      </ul>
         <ul id="nav-mobile" class="right ">
           <% if(userPopulated) { %>
-          <li><a href="/loggedin">Groups Home</a></li>
-          <li><a href="/dashboard/<%=userPopulated.activeGroup.id%>"> <%= userPopulated.activeGroup.name %> Dashboard</a></li>
           <li><a href="/tasks/new">New Task</a></li>
           <li><a href="/users/mytasks">My Tasks</a></li>
           <% }; %>
