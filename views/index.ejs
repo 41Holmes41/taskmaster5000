@@ -40,10 +40,11 @@
               <% if (userPopulated.groups[0]) { %>
 
                 <span class="card-title center">Your Created Groups</span>
+                <div class="row">
               <% userPopulated.groups.forEach(function(group) { %>
 
-
               <% if (userPopulated._id.equals(group.creator._id)) { %>
+                <div class="col s6 m4">
               <a href="/dashboard/<%=group._id%>">
                 <div class="card blue">
                   <div class="card-content white-text">
@@ -52,13 +53,17 @@
                   </div>
                 </div>
               </a>
+            </div>
               <% } %>
               <% }) %>
+            </div>
             
               <span class="card-title center">Your Joined Groups</span>
+              <div class="row">
               <% userPopulated.groups.forEach(function(group) { %>
               <% if (userPopulated._id.equals(group.creator._id)) { %>
               <% } else{ %>
+                <div class="col s6 m4">
                 <a href="/dashboard/<%=group._id%>">
                   <div class="card blue">
                     <div class="card-content white-text">
@@ -67,8 +72,10 @@
                     </div>
                   </div>
                 </a>
+              </div>
               <% } %>
               <% }) %>
+            </div>
 
               <% } else { %>
               <div class="card-content white-text">
