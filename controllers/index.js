@@ -17,19 +17,19 @@ function index(req, res, next) {
       name: req.query.name,
       userPopulated
     });
-  }
+  };
 
 
 
 function loggedIn(req, res, next) {
   req.user.populate('groups').execPopulate(function (err, userPopulated) {
     Group.find({}, function(err,groups) {
-    res.render('index', {
-      name: req.query.name,
-      userPopulated,
-      groups
+      res.render('index', {
+        name: req.query.name,
+        userPopulated,
+        groups
+      });
     });
-  })
   });
 };
 
@@ -43,25 +43,18 @@ function showDashboard(req, res, next) {
       req.user.activeGroup = group;
       req.user.populate('activeGroup').execPopulate(function (err, userPopulated) {
         req.user.save(function (err) {
-          
           group.populate({
             path: 'messages',
             populate: { path: 'poster', option: { sort : { 'createdAt': -1}}}
           }).execPopulate(function (err, group){
-
-            res.render('dashboard', {
-              name: req.query.name,
-              group,
-              userPopulated,
-              
+              res.render('dashboard', {
+                name: req.query.name,
+                group,
+                userPopulated,
+              });
             });
-
-          });
-
-
-          })
-
         });
       });
     });
-  }
+  });
+}

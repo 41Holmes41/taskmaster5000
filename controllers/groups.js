@@ -23,32 +23,29 @@ function error(req, res, next) {
 };
 
 function joingroup(req, res, next) {
-Group.findOne({name : req.body.name}, function(err, group){
-  if (group.password === req.body.password){
-    group.users.push(req.user._id);
-    group.save(function (err){
-      req.user.groups.push(group._id);
-      req.user.save();
-      res.redirect('/loggedin')
-    });
-    
-  } else {
-    res.redirect('/groups/error');
-  }
-}); 
+  Group.findOne({name : req.body.name}, function(err, group){
+    if (group.password === req.body.password){
+      group.users.push(req.user._id);
+      group.save(function (err){
+        req.user.groups.push(group._id);
+        req.user.save();
+        res.redirect('/loggedin')
+      });
+    } else {
+      res.redirect('/groups/error');
+    };
+  }); 
 };
-
 
 function joinpage(req, res, next) {
   Group.findById(req.params.id, function(err,group){
-  res.render('groups/join', {
-    userPopulated: req.user,
-    name: req.query.name,
-    group
+    res.render('groups/join', {
+      userPopulated: req.user,
+      name: req.query.name,
+      group
+    });
   });
-});
 };
-
 
 function newGroup(req, res, next) {
   res.render('groups/new', {

@@ -12,22 +12,17 @@ module.exports = {
 };
 
 function assigntask(req, res) {
-
   Task.findById(req.params.id, function (err, task) {
-
     task.available = false;
     task.save(function (err) {
-
       Group.findById(req.user.activeGroup, function (err, group) {
         group.availableTasks.remove({
           _id: task.id
         });
         group.activeTasks.push(task.id);
         group.save(function (err) {
-
           req.user.currentTasks.push(task.id);
           req.user.save(function (err) {
-
             req.user.populate('currentTasks').populate('activeGroup').populate('completedTasks').execPopulate(function (err, userPopulated) {
               res.render('tasks/mytasks', {
                 name: req.query.name,
@@ -35,11 +30,11 @@ function assigntask(req, res) {
                 userPopulated
               });
             });
-          })
-        })
-      })
-    })
-  })
+          });
+        });
+      });
+    });
+  });
 };
 
 function mytasks(req, res) {
@@ -91,8 +86,8 @@ function completetask(req, res) {
         _id: task.id
       });
       req.user.completedTasks.push(task.id);
-      req.user.currentPoints+=task.points;
-      req.user.totalPoints+=task.points;
+      req.user.currentPoints += task.points;
+      req.user.totalPoints += task.points;
       req.user.save(function (err) {
         Group.findById(req.user.activeGroup, function (err, group) {
           group.activeTasks.remove({
@@ -106,10 +101,10 @@ function completetask(req, res) {
                 group: req.user.activeGroup,
                 userPopulated
               });
-            })
-          })
-        })
-      })
+            });
+          });
+        });
+      });
     });
   });
 };

@@ -7,8 +7,7 @@ var replySchema = new Schema({
   content: String,
   postTime: String,
   editTime: Date
-})
-
+});
 
 var messageSchema = new Schema({
   title: String,
@@ -24,9 +23,8 @@ var messageSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Group'
   }
-
 }, {
   timestamps: true
-})
+});
 
 module.exports = mongoose.model('Message', messageSchema);
