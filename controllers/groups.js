@@ -57,6 +57,7 @@ function newGroup(req, res, next) {
 function create(req, res, next) {
   Group.create(req.body, function (err, group) {
     group.creator = req.user
+    group.users.push(req.user);
     group.save(function (err) {
       User.findById(req.user._id, function (err, user) {
         user.groups.push(group);

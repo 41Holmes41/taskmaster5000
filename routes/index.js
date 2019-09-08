@@ -31,6 +31,10 @@ router.get('/logout', function(req, res){
 
 router.get('/dashboard/:id', indexCtlr.showDashboard)
 
+function isLoggedIn(req, res, next) {
+  if ( req.isAuthenticated() ) return next();
+  res.redirect('/auth/google');
+}
 
 
 module.exports = router;

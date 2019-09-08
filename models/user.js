@@ -1,6 +1,13 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+var pointsByGroupSchema = new mongoose.Schema({
+    groupId: String,
+    points: Number
+})
+
+
 var userSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -14,6 +21,7 @@ var userSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Group'
     }],
+    pointsByGroup: [pointsByGroupSchema],
     currentPoints: {
         type: Number,
         default: 1

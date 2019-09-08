@@ -19,8 +19,6 @@ function index(req, res, next) {
     });
   };
 
-
-
 function loggedIn(req, res, next) {
   req.user.populate('groups').execPopulate(function (err, userPopulated) {
     Group.find({}, function(err,groups) {
@@ -36,7 +34,18 @@ function loggedIn(req, res, next) {
 
 function showDashboard(req, res, next) {
   Group.findById(req.params.id, function (err, group) {
-    group.populate('creator').populate('availableTasks').execPopulate(function (err, group) {
+    group.populate('creator').populate('availableTasks').populate({
+      path: 'users',
+      options: { sort : {currentPoints : -1}}
+    }).populate({
+      path: 'completedTasks',
+      options: { sort : { completion : -1 }}
+    }).execPopulate(function (err, group) {
+      
+
+
+
+
       Time.updateTaskPoints();
       Time.postDuration();
       Time.durationToDueDate();
@@ -50,7 +59,7 @@ function showDashboard(req, res, next) {
               res.render('dashboard', {
                 name: req.query.name,
                 group,
-                userPopulated,
+                userPopulated
               });
             });
         });

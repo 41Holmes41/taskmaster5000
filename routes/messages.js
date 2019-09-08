@@ -4,9 +4,16 @@ var messagesCtlr = require('../controllers/messages')
 var passport = require('passport');
 
 
-router.get('/new', messagesCtlr.newMessage);
-router.post('/new', messagesCtlr.createMessage);
-router.get('/show/:id', messagesCtlr.show);
-router.post('/newreply/:id', messagesCtlr.createReply);
+router.get('/new', isLoggedIn, messagesCtlr.newMessage);
+router.post('/new',  isLoggedIn, messagesCtlr.createMessage);
+router.get('/show/:id',  isLoggedIn, messagesCtlr.show);
+router.post('/newreply/:id',  isLoggedIn, messagesCtlr.createReply);
+
+
+
+ function isLoggedIn(req, res, next) {
+  if ( req.isAuthenticated() ) return next();
+  res.redirect('/auth/google');
+}
 
 module.exports = router;

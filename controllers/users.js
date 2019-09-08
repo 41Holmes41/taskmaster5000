@@ -81,6 +81,7 @@ function removetask(req, res) {
 function completetask(req, res) {
   Task.findById(req.params.id, function (err, task) {
     task.completed = true;
+    task.completedBy = req.user.id;
     task.save(function (err) {
       req.user.currentTasks.remove({
         _id: task.id
@@ -111,7 +112,7 @@ function completetask(req, res) {
 
 function myinfo(req, res) {
   User.findById(req.params.id, function (err, user) {
-    user.populate('groups').execPopulate(function (err, userPopulated) {
+    user.populate('groups').populate('activeGroup').execPopulate(function (err, userPopulated) {
       res.render('users/myinfo', {
         name: req.query.name,
         userPopulated

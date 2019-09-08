@@ -127,10 +127,10 @@
 
   
   
-            <% if (group.availableTasks[0]) { %>
+            
   
             <div class="row">
-              <p> <% group.availableTasks.forEach( function(task) {  %></p>
+              <p> <% group.users.forEach( function(user) {  %></p>
   
               <div class="col s12 m12">
                 <div class="card blue darken-1">
@@ -141,13 +141,13 @@
                     <div class="row">
                       <div class="col s6 m6">
                         
-                        <h5><%=task.creatorName%></h5>
-                        <h6>Points: <%=task.points%></h6>
+                        <h5><%= user.name %></h5>
+                        <h6>Points: <%= user.currentPoints %></h6>
                         
                       </div>
   
                       <div class="col s6 m6">
-                          <img class="card-pic z-depth-3 profile responsive-img circle" src="<%=task.creatorAvatar%>"
+                          <img class="card-pic z-depth-3 profile responsive-img circle" src="<%=user.avatar%>"
                           alt="">
                           
                       </div>
@@ -158,7 +158,7 @@
                 </div>
               </div>
               <% }) %>
-              <% } %>
+              
             </div>  
   
           </div>
@@ -174,10 +174,10 @@
   
     
     
-              <% if (group.availableTasks[0]) { %>
+              <% if (group.completedTasks[0]) { %>
     
               <div class="row">
-                <p> <% group.availableTasks.forEach( function(task) {  %></p>
+                <p> <% group.completedTasks.forEach( function(task) {  %></p>
     
                 <div class="col s12 m12">
                   <div class="card blue darken-1">
@@ -188,7 +188,8 @@
                       <div class="row">
                         <div class="col s6 m6">
                           
-                          <h5><%=task.creatorName%></h5>
+                          <h5><%=task.title%></h5>
+                          <h5><%=task.completion%></h5>
                           <h6>Points: <%=task.points%></h6>
                           
                         </div>
